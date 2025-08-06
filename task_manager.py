@@ -27,7 +27,12 @@ def update_task_name(tasks, task_index, task_new_name):
         print("\nTask chosen does not exist")
     return
     
-
+def complete_task(tasks, task_index):
+    task_index_adjust = int(task_index) - 1
+    if task_index_adjust >= 0 and task_index_adjust < len(tasks):
+        tasks[task_index_adjust]["completed"] = True
+    print(f"Task {task_index} tagged as completed: ")
+    return
 
 tasks = []
 
@@ -52,5 +57,9 @@ while True:
         task_index = input("Type the number of the task you'd like to update: ")
         task_new_name = input("\nPlease rename your task: ")
         update_task_name(tasks, task_index, task_new_name)
+    elif user_input == "4":
+        see_tasks(tasks)
+        task_index = input("Please select the task you have completed: ")
+        complete_task(tasks, task_index)
     elif user_input == "6":
         break
